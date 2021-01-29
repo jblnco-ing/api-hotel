@@ -11,12 +11,16 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        App\User::create([
+        $user=App\User::create([
             'name'      => 'Super Admin',
             'email'     => 'super@admin.com',
-            'password'     => bcrypt('123'),
+            'password'  => bcrypt('123'),
         ]);
+        $user->assignRole('Admin');
+        $users = factory(App\User::class, 7)->create();
+        foreach($users as $user){
+            $user->assignRole('Client');
+        }
 
-        factory(App\User::class, 7)->create();
     }
 }

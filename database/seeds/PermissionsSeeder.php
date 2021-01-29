@@ -38,7 +38,5 @@ class PermissionsSeeder extends Seeder
             'rooms.index',
             'rooms.show',
         ]);
-        $user = User::find(1); //Super Admin
-        $user->assignRole('Admin');
     }
 }
