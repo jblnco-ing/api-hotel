@@ -2,29 +2,33 @@
 
 namespace App\Http\Controllers\Api\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
+use App\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends ApiController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function self(Request $request)
     {
-        //
+        return $this->showOne($request->user());
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index(Request $request)
     {
-        //
+        if(!$request->user()->can('Client'))
+        return $this->errorResponse("You don't have permission to access",403);
+        $users=User::all();
+        return $this->showAll($users);
     }
 
     /**
@@ -44,20 +48,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        if(!$request->user()->can('Client'))
+        return $this->errorResponse("You don't have permission to access",403);
+        $user=User::find($id);
+        return $this->showAll($user);
     }
 
     /**
@@ -69,7 +65,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
