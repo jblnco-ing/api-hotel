@@ -25,8 +25,6 @@ class UserController extends ApiController
      */
     public function index(Request $request)
     {
-        if(!$request->user()->can('Client'))
-        return $this->errorResponse("You don't have permission to access",403);
         $users=User::all();
         return $this->showAll($users);
     }
@@ -39,7 +37,19 @@ class UserController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        // if($user->hasRole('Employee'))
+
+        $rules=[
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string'
+        ];
+        $data = $request->validate($rules);
+        $data['password'] = bcrypt($data['password']);
+
+        $user=User::create($data);
+        $user->assignRole('Employee');
+        return $this->showOneData('Successfully created user!');
     }
 
     /**
@@ -48,12 +58,10 @@ class UserController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id,Request $request)
+    public function show($id)
     {
-        if(!$request->user()->can('Client'))
-        return $this->errorResponse("You don't have permission to access",403);
         $user=User::find($id);
-        return $this->showAll($user);
+        return $this->showOne($user);
     }
 
     /**

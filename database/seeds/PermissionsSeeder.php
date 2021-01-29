@@ -19,6 +19,8 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'rooms.show']);
         Permission::create(['name' => 'rooms.store']);
         Permission::create(['name' => 'rooms.delete']);
+        Permission::create(['name' => 'users.index']);
+        Permission::create(['name' => 'users.show']);
         Permission::create(['name' => 'employee.store']);
         Permission::create(['name' => 'employee.delete']);
         Permission::create(['name' => 'record.delete']);
@@ -31,6 +33,9 @@ class PermissionsSeeder extends Seeder
             'rooms.index',
             'rooms.update',
             'rooms.show',
+            'users.index',
+            'users.show',
+            'employee.store',
             'record.update',
         ]);
         $client = Role::create(['name' => 'Client']);

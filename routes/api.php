@@ -24,7 +24,9 @@ Route::group([
     ], function() {
         Route::get('logout', 'Api\Auth\AuthController@logout');
         Route::get('users/self', 'Api\User\UserController@self');
-        Route::resource('users', 'Api\User\UserController');
+        Route::post('users', 'Api\User\UserController@store')->middleware('permission:employee.store');
+        Route::get('users', 'Api\User\UserController@index')->middleware('permission:users.index');
+        Route::get('users/{id}', 'Api\User\UserController@show')->middleware('permission:users.show');
     });
 });
 
