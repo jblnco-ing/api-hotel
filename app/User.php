@@ -41,6 +41,6 @@ class User extends Authenticatable
 
     public function records()
     {
-        return $this->hasMany(Record::class);
+        return $this->belongsToMany(Record::class);
     }
 }
