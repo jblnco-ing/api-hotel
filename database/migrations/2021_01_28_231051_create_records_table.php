@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecordTable extends Migration
+class CreateRecordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,15 @@ class CreateRecordTable extends Migration
      */
     public function up()
     {
-        Schema::create('record', function (Blueprint $table) {
+        Schema::create('records', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
             $table->dateTime('date_in')->default(Carbon::now());
             $table->dateTime('date_out')->default(Carbon::now()->addDay(1));
             $table->foreignId('update_by')->nullable()->constrained('users');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('room_id')->constrained('rooms');
+            $table->foreignId('user_id');
+            $table->foreignId('room_id');
         });
     }
 
@@ -32,6 +33,9 @@ class CreateRecordTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('record');
+        Schema::table('records', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+        Schema::dropIfExists('records');
     }
 }
