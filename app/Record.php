@@ -13,7 +13,6 @@ class Record extends Model
         'date_in',
         'date_out',
         'update_by',
-        'user_id',
         'room_id',
     ];
 
