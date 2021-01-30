@@ -16,17 +16,31 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix' => 'auth'
 ], function () {
+    /**Login */
     Route::post('login', 'Api\Auth\AuthController@login');
     Route::post('signup', 'Api\Auth\AuthController@signUp');
-
+    /**Rooms */
+    Route::get('rooms', 'Api\Room\RoomController@index');
+    Route::get('rooms/{id}', 'Api\Room\RoomController@show');
+    
     Route::group([
-      'middleware' => 'auth:api'
+        'middleware' => 'auth:api'
     ], function() {
         Route::get('logout', 'Api\Auth\AuthController@logout');
+        
+        /**User */
         Route::get('users/self', 'Api\User\UserController@self');
         Route::post('users', 'Api\User\UserController@store')->middleware('permission:employee.store');
         Route::get('users', 'Api\User\UserController@index')->middleware('permission:users.index');
         Route::get('users/{id}', 'Api\User\UserController@show')->middleware('permission:users.show');
+        
+        /**Rooms */
+        Route::resource('rooms','Api\Room\RoomController',['only'=>['store','destroy']])->middleware('permission:rooms.store');
+        Route::put('rooms/{id}', 'Api\Room\RoomController@update')->middleware('permission:rooms.update');
+        
+        /**Rooms Record */
+        Route::resource('rooms.record','Api\Room\RoomRecordController',['only'=>['index','show','update']])->middleware('permission:rooms.update');
+        Route::resource('record','Api\Record\RecordController',['only'=>['index','show','update']])->middleware('permission:record.update');
     });
 });
 
