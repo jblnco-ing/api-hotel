@@ -41,7 +41,6 @@ Route::group([
         /**Record */
         Route::resource('record','Api\Record\RecordController',['only'=>['index','show','update']])->middleware('permission:record.update');
         Route::resource('record','Api\Record\RecordController',['only'=>['store']]);
-        
         /**Rooms Record */
         Route::resource('room.records','Api\Room\RoomRecordController',['only'=>['index','show']])->middleware('permission:rooms.update');
     });

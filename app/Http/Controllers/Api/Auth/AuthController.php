@@ -1,5 +1,35 @@
 <?php
 
+/**
+ * @OA\Tag(
+ *   name="Auth",
+ *   description="Operaciones sobre signup, login y logout.",
+ * )
+ *
+ * @OA\Schema(
+ *   schema="token",
+ *   @OA\Property(
+ *     property="access_token",
+ *     type="string"
+ *   ),
+ *   @OA\Property(
+ *     property="token_type",
+ *     type="string"
+ *   ),
+ *   @OA\Property(
+ *     property="expires_at",
+ *     type="string"
+ *   )
+ * )
+ *
+ * @OA\Schema(
+ *   schema="message",
+ *   @OA\Property(
+ *     property="message",
+ *     type="string"
+ *   )
+ * )
+ */
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\ApiController;
@@ -7,11 +37,54 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 class AuthController extends ApiController
 {
-        /**
-     * Registro de usuario
+
+    /**
+     * @OA\Post(
+     *     tags={"Auth"},
+     *     path="/api/auth/signup",
+     *     summary="Un usuario puede registrarse como cliente.",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"name","email","password"},
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="email"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string"
+     *                 ),
+     *                 example={"name": "Jon Doe", "email": "jon@doe.com", "password": "secret"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Registra el usuario y muestra un mensaje.",
+     *          @OA\JsonContent(
+     *              ref="#/components/schemas/message"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Un error a ocurrido."
+     *     )
+     * )
+     */
+    
+     /**
+     * Store a newly created user with role client in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function signUp(Request $request)
     {
@@ -35,7 +108,59 @@ class AuthController extends ApiController
     }
 
     /**
-     * Inicio de sesión y creación de token
+     * @OA\Post(
+     *     tags={"Auth"},
+     *     path="/api/auth/login",
+     *     summary="Un usuario puede iniciar sección.",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"email","password"},
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="email"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string"
+     *                 ),
+     *                 example={"email": "jon@doe.com", "password": "secret"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Inicia la sección del usuario y devuelve un token, su tipo y tiempo de expiración.",
+     *          @OA\JsonContent(
+     *               @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/token"
+     *              ),             
+     *         ) 
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Datos invalidos.",
+     *        @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/error"
+     *              ),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Un error a ocurrido."
+     *     )
+     * )
+     */
+
+    /**
+     * Login a user and get a token.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function login(Request $request)
     {
@@ -48,8 +173,8 @@ class AuthController extends ApiController
         $credentials = request(['email', 'password']);
 
         if (!Auth::attempt($credentials))
-            return response()->json([
-                'message' => 'Unauthorized'
+            return $this->errorResponse([
+                'message' => 'The email or password is incorrect'
             ], 401);
 
         $user = $request->user();
@@ -68,8 +193,41 @@ class AuthController extends ApiController
     }
 
     /**
-     * Cierre de sesión (anular el token)
+     * @OA\Get(
+     *     tags={"Auth"},
+     *     path="/api/auth/logout",
+     *     summary="Un usuario puede cerrar sección.",
+     *      security={{"bearerAuth":{}}}, 
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cierra la sección del usuario y muestra un mensaje.",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                    ref="#/components/schemas/message"
+     *              ), 
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No esta Autenticado.",
+     *          @OA\JsonContent(
+     *              ref="#/components/schemas/message"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Un error a ocurrido."
+     *     )
+     * )
      */
+    
+     /**
+     * Close a user session.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+   */
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
