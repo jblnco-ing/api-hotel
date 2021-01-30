@@ -31,7 +31,7 @@ class RoomController extends ApiController
             'code' => 'nullable|string',
             'capacity' => 'nullable|integer|max:5|min:1',
             'price' => 'nullable|integer',
-            'status' => 'nullable|bool',
+            'status' => 'nullable|boolean',
         ]);
         $room=Room::create($data);
         return $this->showOne($room);

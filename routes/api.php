@@ -38,10 +38,12 @@ Route::group([
         Route::resource('rooms','Api\Room\RoomController',['only'=>['store','destroy']])->middleware('permission:rooms.store');
         Route::put('rooms/{id}', 'Api\Room\RoomController@update')->middleware('permission:rooms.update');
         
-        /**Rooms Record */
-        Route::resource('rooms.record','Api\Room\RoomRecordController',['only'=>['index','show','update']])->middleware('permission:rooms.update');
+        /**Record */
         Route::resource('record','Api\Record\RecordController',['only'=>['index','show','update']])->middleware('permission:record.update');
         Route::resource('record','Api\Record\RecordController',['only'=>['store']]);
+        
+        /**Rooms Record */
+        Route::resource('room.records','Api\Room\RoomRecordController',['only'=>['index','show']])->middleware('permission:rooms.update');
     });
 });
 
