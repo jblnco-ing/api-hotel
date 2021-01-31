@@ -1,6 +1,25 @@
 <?php
 /**
 * @OA\Schema(
+*  schema="new_user",
+*  required={"name","email","password"},
+*   @OA\Property(
+*     property="name",
+*     type="string",
+*     example="Emil Weimann"
+*   ),
+*   @OA\Property(
+*     property="email",
+*     type="string",
+*     example="zena44@example.org"
+*   ),
+*   @OA\Property(
+*     property="password",
+*     type="string",
+*     example="password"
+*   ),
+* ),
+* @OA\Schema(
 *  schema="user",
 *  @OA\Property(
 *     property="id",
