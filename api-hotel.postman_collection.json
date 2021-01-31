@@ -1,0 +1,1014 @@
+{
+	"info": {
+		"_postman_id": "73b75708-aa8f-46a1-8299-8c4c5b03fae9",
+		"name": "api-hotel",
+		"description": "Collección para probar la api del hotel.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login, SignUp and Logout",
+					"item": [
+						{
+							"name": "Login Super Admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "super@admin.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								},
+								"description": "Hacer login con el usuario Que tiene permisos de Admin."
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "for@doe.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								},
+								"description": "Hacer login con el usuario Que tiene permisos de Admin."
+							},
+							"response": []
+						},
+						{
+							"name": "SignUP Client",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Jon Doe",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "dos@doe.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/signup",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"signup"
+									]
+								},
+								"description": "Registra a un Usuario con Permisos de Cliente."
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiN2ZhN2RiN2UwZmM2ZjY0MzljZTE2ZjhlNjJiMmY3MDcyNWMwMjMzZTBjNWI1YjFiYmFhN2VkMDFkYzU4NDcxZDYwMDU2ZWQyYjZkYWIxNzkiLCJpYXQiOjE2MTE5NDkzMzgsIm5iZiI6MTYxMTk0OTMzOCwiZXhwIjoxNjQzNDg1MzM4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.a7bJapo-Jeeo7wI4pzmWAx2NUW22XuPvfLV8ZeiTLfFexh4ClweDBO2UF-d2PdYDPKIwsa5O0yigmJzOe4x_NvwR72KkxfpOYE0QvEMVo2Pbr0v4KvrC4iB8uqq6nwiJYCTg7enEj2oMQXvrdxTl7snejK0sg8TxuvMcIm-g6HeSwyOgQniQbHFOYjlPWKEvRqQuXnsvk-oVfafo6jXdq8KjYtV-VW6ckK5as4IUtQGduF5ELYpkBM6N8YDnPt1KftRABPIccvyRtgzvQQeqmrZA74ZF5mCCqbOroUjbW2r8Ig-xevVWkoAqAJLIkLwrgvnbkuzsOyzD89fwlHISYkSpqwiGW7ITTQjUzCPllZZGAPK43sdkjJajZBophgccHOLZ5Q2ZwOp1f3o7D5AJ9bZg6iE6CBtgCRQXppVtzRC_NKY3P7-uTGScuDKyR_AHYNVWTIFdv6rekgDA2B16IK9aJz-_tZkPjtqENXrcigZMss8WDda5o9Nn5IY7ZIAhR-HTpq4rhsIFbjg_lgqy9jau4iGC0mrFIPEJgE6vVcPJLzgNgsypa4zB7m3ZN1skpjnaMAV8NlMw05zepO_D-hBu8Cqa-pbBqEPkqbK-IgkECKoPMyOa0ipnfAyM04JP5l4rMS7zUCkZgB89WyIiHycy4e1JUfHBA0DD65zi4kE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/logout",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								},
+								"description": "Cierra session del usuario"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "User Self",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTBlNmQ2OTUwZjEwMDg3YjIxNzEwZGRmODI2ZjJkMDMzYWIwNmEyYmVjNGMyMTE4NzdmMTIwYjI2MGQwYjAxNzllN2RkZWQ2Y2Y0ZTk3M2IiLCJpYXQiOjE2MTE5NTMwMTgsIm5iZiI6MTYxMTk1MzAxOCwiZXhwIjoxNjQzNDg5MDE4LCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.twgH6kQQNQyT3dERIahE2VKwGI03nEDjjn7UcQArsemUWkeRcbN_yQsOecutvbePzNV_BqXHvypuAfYDSjWAaRzP67QPthuik8CWmaDefJ2s2_XMW4VqG7-fmJvT_C0D2tuUh0d7JROpPZh7XwIhdHVNIlejQyfbwusIg1JiRzPvkqHVo5z_B1VHsDhUCzXaU_OXa7qsIqUKP7XY_LyVgFzE9nPnyLsTPIMhY5k5SrDVHAcWdPh3vfoiu30YBsCVutHl0ncJVtRyeeDdbkatlInJa3oyn1EZi7t7Ex1mu6nfXkeWuPatjlYQrSpyBE7PsXAyoqbaLqowU87WBWtAKTZprDKeBH42h421f2c5vww0B39C62K7PL4NcAz2ORHg0-iMmvgnNxf-hXUqWDeHGMZsVeX5p9k5lCGp454sn2O5mTPYJccratrlZXWhDNAUWN80QGGQ7IN94SrhyXHimdduwgx6CTiaDFwYE-QkwiFBMuBml8yLCQcVoGefYqMaU0VA3dpb0LAOyF68xIdakvqDHVdcIly32uTOh4vok-Gb7_3b9POTjyTY1E275MM0G6fJu1HGZrNY-PI6vYIr3CC02WVXZeI-zoSZqlTv3jHVO_hq6L0x3NixwENXj04f_yohRWXOTAkMBNCv-H51FPsQVxrdPe0FKKJK3x0Sa2s",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/users/self",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"users",
+										"self"
+									]
+								},
+								"description": "Muestra la informacion de un usuario."
+							},
+							"response": []
+						},
+						{
+							"name": "User List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODNiNzZkZTk3MDJkNjk1ZDMwMzRlNThmNDYxNDEyNDA5ZTIwNzVkMzc4YmMwYjA5ZTk1OTZjYjM2MTg4NTJlOTMwNTUwZTBmNTViOTI5ODAiLCJpYXQiOjE2MTE5NTc4MjksIm5iZiI6MTYxMTk1NzgyOSwiZXhwIjoxNjQzNDkzODI5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.HXd9cQ8mtcAnts1p-hVbUfoqHsgfshz6BjRFI-5218Yywm3qXNPqxsXTR6X8jJvGCI1UMBE2nWsEBgttmGNDwPvDeueS154lLXEerg1UZzU-YqdF-BSBJYiGjFbJaamJYvk8qjoEI-PP5yS3-TkY0HOZ2iaayPkkvquhyPlM5ENFh95-nDfRHYZdIbvjkul2j03qMdABie6_D6GjbYIYGEkHRV0lgsczKSZgrjP5dAUPbuAMhtwkvmx-fAaD6ymeqFBut5CMiSl_1gV3b5mlhK_1dZ7uKXFyWkVRCesZi2QglNOz3Tbg52jQlXaqEiT8-QaVQ1gysiso1vwKJJYF3pPbXicWQwduCfGqjESiLSAbm_07j1fO4ybW4whuEYXW5Sf0Er2a05thUNOOvKhH3SU8vYtyxuhxQuCkyO9-GdFAzYdgJ4_676wu4_wlbnhm8CsNL2lsjyfd0RDEDh12RNp_UEcjaMsiG0e5arAa0rimTQVAOOggxhtMYoLKqv2V7cfvKTbxlD6bLhSuXdOn2afAMYY9ho5swvIyrwJlt_QWrrK2VDiqryDwIvBcRJ_cVEe7l5zvOPAz3ZPpqeN99yeHXi0JhQutqN4ZhjGF6TOr_nKTgV5XeyxkTv_eUD8N4AXPbDQ-eXMVQYaLURoJ-O9JwjOTfUuTJ6kMKXOBHSU",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"users"
+									]
+								},
+								"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+							},
+							"response": []
+						},
+						{
+							"name": "User Show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOGU5YmQ3ZDk3NzFjMDY5NDQ0MzRmYTc2ZWY1ODU5YjdlYjFiYjU0ZmU1MDQxYmE3MDZhN2FiZDg1ZjM0YzhkYzJmNGIzYTg3MzM5MGU5YjYiLCJpYXQiOjE2MTE5NjI1MzQsIm5iZiI6MTYxMTk2MjUzNCwiZXhwIjoxNjQzNDk4NTM0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.exMdHqNH_a2M_K1YdR3XFV5uMsiCTN6wVsdqAG04J573Te3oH4ZioAQIEcqy4xSoSJgf6mgQKtuJPG3WRDoWDRWuoG5qzqz3ndH1u5Ij_oEpY3BunSjyzywZHMqTj8040FmqoRrVrCvOQSgMCErQEV6WWmUSAwsi7b_E5h-0if4lHheeMCY3vXxiOOwTQNv8adQ3p6zphkCoYmjHStxpNv_OleqWpXbaqFlVo0oL_VrjXa9qK7J4b6UG-aL99dQlXMFGCnfBxvVk_19PMsmL-LM3IyNgTSFmvk09NiF20oufWNdEOnKGoim2psrMpvV_8FqpEEIa8V906I6O3pjnDqB-m2G9Ax1kqBmxU0-K2HPKtb77OJop_EyLQM2DQ0vKZu5MZ8vUQtmvzIjTVjZmxwo74ma6vrzFn3LX254cYuEzd_W0kpA6r0jncqTjE__TJaYEzktC67vc_b8dBwD2w7EMzNeqqFnq--dZnG3-NLbu7yxFCQcsTgKAXduSORN24GC9bo2tmysNX0sIsE6On47ZrQqtiYZdsSjYACUrwx8509DPMOlM0TU-Ubc3D5ejEIUA--MeS23p3wmqKACn_t1I6fqSS2CL9cpA9SO0s1K3Hvw9RW647qS_iWKh6JiuLEnrN-gwYYC5nocDioXkvaNPtm--TG86RTB06L22nB0",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/users/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"users",
+										"5"
+									]
+								},
+								"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+							},
+							"response": []
+						},
+						{
+							"name": "Create User Employee",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODNiZTAxYTQ1NzQxZmQ5ZTRkM2ZhMDcxMzY5M2U3Mjc0ZDQzNTFiMDBlYmMzMTc2MGY4ZTE1ZTU1ZDM3NzUyNjQ0NWJhMTBkZjRmZWE2MTQiLCJpYXQiOjE2MTE5NzQ5NTQsIm5iZiI6MTYxMTk3NDk1NCwiZXhwIjoxNjQzNTEwOTU0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.qfyf0RKolwg5U9P0L-I8XdR3Zj7-YS2VcsAR63jw3877QW8Enu9W80MgQsz05mxdxSOCX0v5p775qaOK44RoWFGIiiEXL98vFvkMNY5wEV5FrNLkw3i2tuxo-EyLMK-Kq9hh_pYVohS5lcGqauJg-_igH6EkqzWufuUP2roGjiv819oR-sHAnBWof8MTcQtc_yl9k5tmHVWLf9azTsQrvePPqbSkEDtMqttfkJTjfzFPmO6BAJVGUc-I-ozUb_SSX-htlBrjxywGxcxUBHlC-k0vmOFie55D_yq8ZomM1ongwbwjuO_6gDnI70c_t84G6QQXGrKtkP0dHajqFbnWsrds_zf9wEWEf7yQP9kinbNLO0gMLwCGcLRDflW2FZ-vi5ACenBO7L2GhhErtcyIfRvTQdqJuPVgUQ-N814q_bDglwmD98wS8BBD9UpZAgV3OXIfF9KTMYNhx_rDG7HD1EaTcKPMpgFZgn4gqNe3AuJsQjrGRBr5tp62kbaVcuSW390TUAmb1umK1_pX-zPkf-Zon6IeXpWeT-c4o1amLtZOQw-ju5owIvYggEi7eiJ0L4JteGik8fMHR0QUAz0ta2GEbfXIIVB66EvVxCBUDvxZGEh48D_SmHjTD7WT0Tlm4DmtFStQ87X69nU1Olze2iyHqPEMvdQgoq1Z4IxCMB4",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "for@doe.com",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Employee Doe",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"users"
+									]
+								},
+								"description": "Esta peticion sirve para crear a los Empleados.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+							},
+							"response": []
+						}
+					],
+					"description": "En esta carpeta se encuentran las peticiones relacionadas con los usuario, como ver la lista de usuarios o sus propios datos."
+				},
+				{
+					"name": "Room",
+					"item": [
+						{
+							"name": "RoomRecords",
+							"item": [
+								{
+									"name": "Room Record List",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODNiZTAxYTQ1NzQxZmQ5ZTRkM2ZhMDcxMzY5M2U3Mjc0ZDQzNTFiMDBlYmMzMTc2MGY4ZTE1ZTU1ZDM3NzUyNjQ0NWJhMTBkZjRmZWE2MTQiLCJpYXQiOjE2MTE5NzQ5NTQsIm5iZiI6MTYxMTk3NDk1NCwiZXhwIjoxNjQzNTEwOTU0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.qfyf0RKolwg5U9P0L-I8XdR3Zj7-YS2VcsAR63jw3877QW8Enu9W80MgQsz05mxdxSOCX0v5p775qaOK44RoWFGIiiEXL98vFvkMNY5wEV5FrNLkw3i2tuxo-EyLMK-Kq9hh_pYVohS5lcGqauJg-_igH6EkqzWufuUP2roGjiv819oR-sHAnBWof8MTcQtc_yl9k5tmHVWLf9azTsQrvePPqbSkEDtMqttfkJTjfzFPmO6BAJVGUc-I-ozUb_SSX-htlBrjxywGxcxUBHlC-k0vmOFie55D_yq8ZomM1ongwbwjuO_6gDnI70c_t84G6QQXGrKtkP0dHajqFbnWsrds_zf9wEWEf7yQP9kinbNLO0gMLwCGcLRDflW2FZ-vi5ACenBO7L2GhhErtcyIfRvTQdqJuPVgUQ-N814q_bDglwmD98wS8BBD9UpZAgV3OXIfF9KTMYNhx_rDG7HD1EaTcKPMpgFZgn4gqNe3AuJsQjrGRBr5tp62kbaVcuSW390TUAmb1umK1_pX-zPkf-Zon6IeXpWeT-c4o1amLtZOQw-ju5owIvYggEi7eiJ0L4JteGik8fMHR0QUAz0ta2GEbfXIIVB66EvVxCBUDvxZGEh48D_SmHjTD7WT0Tlm4DmtFStQ87X69nU1Olze2iyHqPEMvdQgoq1Z4IxCMB4",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/room/1/records",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"room",
+												"1",
+												"records"
+											]
+										},
+										"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+									},
+									"response": []
+								},
+								{
+									"name": "Room Record Show",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODNiZTAxYTQ1NzQxZmQ5ZTRkM2ZhMDcxMzY5M2U3Mjc0ZDQzNTFiMDBlYmMzMTc2MGY4ZTE1ZTU1ZDM3NzUyNjQ0NWJhMTBkZjRmZWE2MTQiLCJpYXQiOjE2MTE5NzQ5NTQsIm5iZiI6MTYxMTk3NDk1NCwiZXhwIjoxNjQzNTEwOTU0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.qfyf0RKolwg5U9P0L-I8XdR3Zj7-YS2VcsAR63jw3877QW8Enu9W80MgQsz05mxdxSOCX0v5p775qaOK44RoWFGIiiEXL98vFvkMNY5wEV5FrNLkw3i2tuxo-EyLMK-Kq9hh_pYVohS5lcGqauJg-_igH6EkqzWufuUP2roGjiv819oR-sHAnBWof8MTcQtc_yl9k5tmHVWLf9azTsQrvePPqbSkEDtMqttfkJTjfzFPmO6BAJVGUc-I-ozUb_SSX-htlBrjxywGxcxUBHlC-k0vmOFie55D_yq8ZomM1ongwbwjuO_6gDnI70c_t84G6QQXGrKtkP0dHajqFbnWsrds_zf9wEWEf7yQP9kinbNLO0gMLwCGcLRDflW2FZ-vi5ACenBO7L2GhhErtcyIfRvTQdqJuPVgUQ-N814q_bDglwmD98wS8BBD9UpZAgV3OXIfF9KTMYNhx_rDG7HD1EaTcKPMpgFZgn4gqNe3AuJsQjrGRBr5tp62kbaVcuSW390TUAmb1umK1_pX-zPkf-Zon6IeXpWeT-c4o1amLtZOQw-ju5owIvYggEi7eiJ0L4JteGik8fMHR0QUAz0ta2GEbfXIIVB66EvVxCBUDvxZGEh48D_SmHjTD7WT0Tlm4DmtFStQ87X69nU1Olze2iyHqPEMvdQgoq1Z4IxCMB4",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/room/1/records/8",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"room",
+												"1",
+												"records",
+												"8"
+											]
+										},
+										"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+									},
+									"response": []
+								}
+							],
+							"description": "En esta Carpeta se encuentrn las rutas relacionadas con los records de los rooms"
+						},
+						{
+							"name": "Room Update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODNiZTAxYTQ1NzQxZmQ5ZTRkM2ZhMDcxMzY5M2U3Mjc0ZDQzNTFiMDBlYmMzMTc2MGY4ZTE1ZTU1ZDM3NzUyNjQ0NWJhMTBkZjRmZWE2MTQiLCJpYXQiOjE2MTE5NzQ5NTQsIm5iZiI6MTYxMTk3NDk1NCwiZXhwIjoxNjQzNTEwOTU0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.qfyf0RKolwg5U9P0L-I8XdR3Zj7-YS2VcsAR63jw3877QW8Enu9W80MgQsz05mxdxSOCX0v5p775qaOK44RoWFGIiiEXL98vFvkMNY5wEV5FrNLkw3i2tuxo-EyLMK-Kq9hh_pYVohS5lcGqauJg-_igH6EkqzWufuUP2roGjiv819oR-sHAnBWof8MTcQtc_yl9k5tmHVWLf9azTsQrvePPqbSkEDtMqttfkJTjfzFPmO6BAJVGUc-I-ozUb_SSX-htlBrjxywGxcxUBHlC-k0vmOFie55D_yq8ZomM1ongwbwjuO_6gDnI70c_t84G6QQXGrKtkP0dHajqFbnWsrds_zf9wEWEf7yQP9kinbNLO0gMLwCGcLRDflW2FZ-vi5ACenBO7L2GhhErtcyIfRvTQdqJuPVgUQ-N814q_bDglwmD98wS8BBD9UpZAgV3OXIfF9KTMYNhx_rDG7HD1EaTcKPMpgFZgn4gqNe3AuJsQjrGRBr5tp62kbaVcuSW390TUAmb1umK1_pX-zPkf-Zon6IeXpWeT-c4o1amLtZOQw-ju5owIvYggEi7eiJ0L4JteGik8fMHR0QUAz0ta2GEbfXIIVB66EvVxCBUDvxZGEh48D_SmHjTD7WT0Tlm4DmtFStQ87X69nU1Olze2iyHqPEMvdQgoq1Z4IxCMB4",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "code",
+											"value": "A-33",
+											"type": "text"
+										},
+										{
+											"key": "capacity",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "300",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/rooms/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"rooms",
+										"1"
+									]
+								},
+								"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+							},
+							"response": []
+						},
+						{
+							"name": "Room Create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODNiZTAxYTQ1NzQxZmQ5ZTRkM2ZhMDcxMzY5M2U3Mjc0ZDQzNTFiMDBlYmMzMTc2MGY4ZTE1ZTU1ZDM3NzUyNjQ0NWJhMTBkZjRmZWE2MTQiLCJpYXQiOjE2MTE5NzQ5NTQsIm5iZiI6MTYxMTk3NDk1NCwiZXhwIjoxNjQzNTEwOTU0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.qfyf0RKolwg5U9P0L-I8XdR3Zj7-YS2VcsAR63jw3877QW8Enu9W80MgQsz05mxdxSOCX0v5p775qaOK44RoWFGIiiEXL98vFvkMNY5wEV5FrNLkw3i2tuxo-EyLMK-Kq9hh_pYVohS5lcGqauJg-_igH6EkqzWufuUP2roGjiv819oR-sHAnBWof8MTcQtc_yl9k5tmHVWLf9azTsQrvePPqbSkEDtMqttfkJTjfzFPmO6BAJVGUc-I-ozUb_SSX-htlBrjxywGxcxUBHlC-k0vmOFie55D_yq8ZomM1ongwbwjuO_6gDnI70c_t84G6QQXGrKtkP0dHajqFbnWsrds_zf9wEWEf7yQP9kinbNLO0gMLwCGcLRDflW2FZ-vi5ACenBO7L2GhhErtcyIfRvTQdqJuPVgUQ-N814q_bDglwmD98wS8BBD9UpZAgV3OXIfF9KTMYNhx_rDG7HD1EaTcKPMpgFZgn4gqNe3AuJsQjrGRBr5tp62kbaVcuSW390TUAmb1umK1_pX-zPkf-Zon6IeXpWeT-c4o1amLtZOQw-ju5owIvYggEi7eiJ0L4JteGik8fMHR0QUAz0ta2GEbfXIIVB66EvVxCBUDvxZGEh48D_SmHjTD7WT0Tlm4DmtFStQ87X69nU1Olze2iyHqPEMvdQgoq1Z4IxCMB4",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "code",
+											"value": "N-1",
+											"type": "text"
+										},
+										{
+											"key": "capacity",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/rooms/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"rooms",
+										""
+									]
+								},
+								"description": "Crea una habitación.\r\n- Solo un Super Admin puede usarlo."
+							},
+							"response": []
+						}
+					],
+					"description": "En esta carpeta se encuentran las peticiones relacionadas con los usuario, como ver la lista de usuarios o sus propios datos."
+				},
+				{
+					"name": "Record",
+					"item": [
+						{
+							"name": "Record List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjcyYjBkZmJjOGM2YjVhZTZlOTgzNTM3YjcwOGE2ZDE1ZGM5MzI2MDg2MDFjOWVhY2I5YzkwZDA0ODE5NDRjNmQ2YWIxM2JiYTQ3N2UxNDkiLCJpYXQiOjE2MTE5NTc2NTIsIm5iZiI6MTYxMTk1NzY1MiwiZXhwIjoxNjQzNDkzNjUyLCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.7-p44Civ2vu53UMyKu7157Fg0-PQoWdKZu16LfyEtMyXPOP9imnvTGN-GXXNh3rF2ZvrZT7n7vGrkNCFGuKIlCtQtHxdupCbeUj1Ci5Si1JNddm-RRdzznRjAt7geonMPWZoNrdWRyN5duLaWoIIL6A6jjJs_XycPwkBee1MRWFHiX_L7pEGg7oQsFM2CFjifEtHqwcIAK3Lb3LX7GLoF2z-y7ckPKVPPnm9JEicVvtdC0V0FAFYZY6d2FyhufYtdJd1FgZlSB1V4iYgKuPP6MZ73YQc9goBaayILxcSY5yKEb5mOPsxyNQWtB_Fd5RAYbGCuy2YYpbhA6WrIw1zU8Rvx3les4YSM_FrDkdN9YEVemjtL12O5s4tPuOMjBNqihIAeWzv8wYdfRyyZkarrf1qC20FHGMvJFy1h2bD4kxBGiKlNLZckOuLbiOu72_vG7k4Hvsab0T9BT55K_6wrKDupdC1cmnzcr_ytqxAx76XpXhGOqtGlexxm12NsVm6OlkIBWgrZQObURVeF8h4ygbbL9Abn5kRlU-STJAOWV6vxvdvrSNtKfJqKmtJX4ADYRGIDRfC05I9qlviPnrKRUPCW3nxszLDC-1vNc0Bijk74KRac_VGG7enilP8XqmRLNVpMLgmsonV-HGSPkvu2M187EkDXk_TrfeG0gVI3P4",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/records",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"records"
+									]
+								},
+								"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+							},
+							"response": []
+						},
+						{
+							"name": "Record Show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjcyYjBkZmJjOGM2YjVhZTZlOTgzNTM3YjcwOGE2ZDE1ZGM5MzI2MDg2MDFjOWVhY2I5YzkwZDA0ODE5NDRjNmQ2YWIxM2JiYTQ3N2UxNDkiLCJpYXQiOjE2MTE5NTc2NTIsIm5iZiI6MTYxMTk1NzY1MiwiZXhwIjoxNjQzNDkzNjUyLCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.7-p44Civ2vu53UMyKu7157Fg0-PQoWdKZu16LfyEtMyXPOP9imnvTGN-GXXNh3rF2ZvrZT7n7vGrkNCFGuKIlCtQtHxdupCbeUj1Ci5Si1JNddm-RRdzznRjAt7geonMPWZoNrdWRyN5duLaWoIIL6A6jjJs_XycPwkBee1MRWFHiX_L7pEGg7oQsFM2CFjifEtHqwcIAK3Lb3LX7GLoF2z-y7ckPKVPPnm9JEicVvtdC0V0FAFYZY6d2FyhufYtdJd1FgZlSB1V4iYgKuPP6MZ73YQc9goBaayILxcSY5yKEb5mOPsxyNQWtB_Fd5RAYbGCuy2YYpbhA6WrIw1zU8Rvx3les4YSM_FrDkdN9YEVemjtL12O5s4tPuOMjBNqihIAeWzv8wYdfRyyZkarrf1qC20FHGMvJFy1h2bD4kxBGiKlNLZckOuLbiOu72_vG7k4Hvsab0T9BT55K_6wrKDupdC1cmnzcr_ytqxAx76XpXhGOqtGlexxm12NsVm6OlkIBWgrZQObURVeF8h4ygbbL9Abn5kRlU-STJAOWV6vxvdvrSNtKfJqKmtJX4ADYRGIDRfC05I9qlviPnrKRUPCW3nxszLDC-1vNc0Bijk74KRac_VGG7enilP8XqmRLNVpMLgmsonV-HGSPkvu2M187EkDXk_TrfeG0gVI3P4",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/record/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"record",
+										"1"
+									]
+								},
+								"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+							},
+							"response": []
+						},
+						{
+							"name": "Record Create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODNiZTAxYTQ1NzQxZmQ5ZTRkM2ZhMDcxMzY5M2U3Mjc0ZDQzNTFiMDBlYmMzMTc2MGY4ZTE1ZTU1ZDM3NzUyNjQ0NWJhMTBkZjRmZWE2MTQiLCJpYXQiOjE2MTE5NzQ5NTQsIm5iZiI6MTYxMTk3NDk1NCwiZXhwIjoxNjQzNTEwOTU0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.qfyf0RKolwg5U9P0L-I8XdR3Zj7-YS2VcsAR63jw3877QW8Enu9W80MgQsz05mxdxSOCX0v5p775qaOK44RoWFGIiiEXL98vFvkMNY5wEV5FrNLkw3i2tuxo-EyLMK-Kq9hh_pYVohS5lcGqauJg-_igH6EkqzWufuUP2roGjiv819oR-sHAnBWof8MTcQtc_yl9k5tmHVWLf9azTsQrvePPqbSkEDtMqttfkJTjfzFPmO6BAJVGUc-I-ozUb_SSX-htlBrjxywGxcxUBHlC-k0vmOFie55D_yq8ZomM1ongwbwjuO_6gDnI70c_t84G6QQXGrKtkP0dHajqFbnWsrds_zf9wEWEf7yQP9kinbNLO0gMLwCGcLRDflW2FZ-vi5ACenBO7L2GhhErtcyIfRvTQdqJuPVgUQ-N814q_bDglwmD98wS8BBD9UpZAgV3OXIfF9KTMYNhx_rDG7HD1EaTcKPMpgFZgn4gqNe3AuJsQjrGRBr5tp62kbaVcuSW390TUAmb1umK1_pX-zPkf-Zon6IeXpWeT-c4o1amLtZOQw-ju5owIvYggEi7eiJ0L4JteGik8fMHR0QUAz0ta2GEbfXIIVB66EvVxCBUDvxZGEh48D_SmHjTD7WT0Tlm4DmtFStQ87X69nU1Olze2iyHqPEMvdQgoq1Z4IxCMB4",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "room_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "date_in",
+											"value": "2021/02/26",
+											"type": "text"
+										},
+										{
+											"key": "date_out",
+											"value": "2021/02/27",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "user_id[0]",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "user_id[1]",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/record/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"record",
+										""
+									]
+								},
+								"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+							},
+							"response": []
+						},
+						{
+							"name": "Record Update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODNiZTAxYTQ1NzQxZmQ5ZTRkM2ZhMDcxMzY5M2U3Mjc0ZDQzNTFiMDBlYmMzMTc2MGY4ZTE1ZTU1ZDM3NzUyNjQ0NWJhMTBkZjRmZWE2MTQiLCJpYXQiOjE2MTE5NzQ5NTQsIm5iZiI6MTYxMTk3NDk1NCwiZXhwIjoxNjQzNTEwOTU0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.qfyf0RKolwg5U9P0L-I8XdR3Zj7-YS2VcsAR63jw3877QW8Enu9W80MgQsz05mxdxSOCX0v5p775qaOK44RoWFGIiiEXL98vFvkMNY5wEV5FrNLkw3i2tuxo-EyLMK-Kq9hh_pYVohS5lcGqauJg-_igH6EkqzWufuUP2roGjiv819oR-sHAnBWof8MTcQtc_yl9k5tmHVWLf9azTsQrvePPqbSkEDtMqttfkJTjfzFPmO6BAJVGUc-I-ozUb_SSX-htlBrjxywGxcxUBHlC-k0vmOFie55D_yq8ZomM1ongwbwjuO_6gDnI70c_t84G6QQXGrKtkP0dHajqFbnWsrds_zf9wEWEf7yQP9kinbNLO0gMLwCGcLRDflW2FZ-vi5ACenBO7L2GhhErtcyIfRvTQdqJuPVgUQ-N814q_bDglwmD98wS8BBD9UpZAgV3OXIfF9KTMYNhx_rDG7HD1EaTcKPMpgFZgn4gqNe3AuJsQjrGRBr5tp62kbaVcuSW390TUAmb1umK1_pX-zPkf-Zon6IeXpWeT-c4o1amLtZOQw-ju5owIvYggEi7eiJ0L4JteGik8fMHR0QUAz0ta2GEbfXIIVB66EvVxCBUDvxZGEh48D_SmHjTD7WT0Tlm4DmtFStQ87X69nU1Olze2iyHqPEMvdQgoq1Z4IxCMB4",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "room_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "date_in",
+											"value": "2021/03/26",
+											"type": "text"
+										},
+										{
+											"key": "date_out",
+											"value": "2021/03/28",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "user_id[0]",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "user_id[1]",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/record/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"record",
+										"1"
+									]
+								},
+								"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+							},
+							"response": []
+						}
+					],
+					"description": "En esta carpeta se encuentran las peticiones relacionadas con los records, como ver la lista de records o los datos de cada uno.",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Root",
+			"item": [
+				{
+					"name": "Room",
+					"item": [
+						{
+							"name": "Room List",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOGU5YmQ3ZDk3NzFjMDY5NDQ0MzRmYTc2ZWY1ODU5YjdlYjFiYjU0ZmU1MDQxYmE3MDZhN2FiZDg1ZjM0YzhkYzJmNGIzYTg3MzM5MGU5YjYiLCJpYXQiOjE2MTE5NjI1MzQsIm5iZiI6MTYxMTk2MjUzNCwiZXhwIjoxNjQzNDk4NTM0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.exMdHqNH_a2M_K1YdR3XFV5uMsiCTN6wVsdqAG04J573Te3oH4ZioAQIEcqy4xSoSJgf6mgQKtuJPG3WRDoWDRWuoG5qzqz3ndH1u5Ij_oEpY3BunSjyzywZHMqTj8040FmqoRrVrCvOQSgMCErQEV6WWmUSAwsi7b_E5h-0if4lHheeMCY3vXxiOOwTQNv8adQ3p6zphkCoYmjHStxpNv_OleqWpXbaqFlVo0oL_VrjXa9qK7J4b6UG-aL99dQlXMFGCnfBxvVk_19PMsmL-LM3IyNgTSFmvk09NiF20oufWNdEOnKGoim2psrMpvV_8FqpEEIa8V906I6O3pjnDqB-m2G9Ax1kqBmxU0-K2HPKtb77OJop_EyLQM2DQ0vKZu5MZ8vUQtmvzIjTVjZmxwo74ma6vrzFn3LX254cYuEzd_W0kpA6r0jncqTjE__TJaYEzktC67vc_b8dBwD2w7EMzNeqqFnq--dZnG3-NLbu7yxFCQcsTgKAXduSORN24GC9bo2tmysNX0sIsE6On47ZrQqtiYZdsSjYACUrwx8509DPMOlM0TU-Ubc3D5ejEIUA--MeS23p3wmqKACn_t1I6fqSS2CL9cpA9SO0s1K3Hvw9RW647qS_iWKh6JiuLEnrN-gwYYC5nocDioXkvaNPtm--TG86RTB06L22nB0",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/rooms",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms"
+									]
+								},
+								"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+							},
+							"response": []
+						},
+						{
+							"name": "Room Show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjcyYjBkZmJjOGM2YjVhZTZlOTgzNTM3YjcwOGE2ZDE1ZGM5MzI2MDg2MDFjOWVhY2I5YzkwZDA0ODE5NDRjNmQ2YWIxM2JiYTQ3N2UxNDkiLCJpYXQiOjE2MTE5NTc2NTIsIm5iZiI6MTYxMTk1NzY1MiwiZXhwIjoxNjQzNDkzNjUyLCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.7-p44Civ2vu53UMyKu7157Fg0-PQoWdKZu16LfyEtMyXPOP9imnvTGN-GXXNh3rF2ZvrZT7n7vGrkNCFGuKIlCtQtHxdupCbeUj1Ci5Si1JNddm-RRdzznRjAt7geonMPWZoNrdWRyN5duLaWoIIL6A6jjJs_XycPwkBee1MRWFHiX_L7pEGg7oQsFM2CFjifEtHqwcIAK3Lb3LX7GLoF2z-y7ckPKVPPnm9JEicVvtdC0V0FAFYZY6d2FyhufYtdJd1FgZlSB1V4iYgKuPP6MZ73YQc9goBaayILxcSY5yKEb5mOPsxyNQWtB_Fd5RAYbGCuy2YYpbhA6WrIw1zU8Rvx3les4YSM_FrDkdN9YEVemjtL12O5s4tPuOMjBNqihIAeWzv8wYdfRyyZkarrf1qC20FHGMvJFy1h2bD4kxBGiKlNLZckOuLbiOu72_vG7k4Hvsab0T9BT55K_6wrKDupdC1cmnzcr_ytqxAx76XpXhGOqtGlexxm12NsVm6OlkIBWgrZQObURVeF8h4ygbbL9Abn5kRlU-STJAOWV6vxvdvrSNtKfJqKmtJX4ADYRGIDRfC05I9qlviPnrKRUPCW3nxszLDC-1vNc0Bijk74KRac_VGG7enilP8XqmRLNVpMLgmsonV-HGSPkvu2M187EkDXk_TrfeG0gVI3P4",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/rooms/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										"1"
+									]
+								},
+								"description": "Muestra la lista todos los usuarios, con su rol.\r\n- Solo un Super Admin puede usarlo.\r\n- Solo un Empleado puede usarlo."
+							},
+							"response": []
+						}
+					],
+					"description": "En esta carpeta se encuentran las peticiones relacionadas con los usuario, como ver la lista de usuarios o sus propios datos."
+				}
+			],
+			"description": "Rutas que no estan dentro del prefijo auth"
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMjY1NDM2NGM2Zjk5ZDI1OTM3NDRjNDI3YmYxZTgzNGE2MjRjNmE5OWQwODk4ZjhmZGNkMzJjZWJmYmZlODBlYzcxMGVmMDFjNTlmZTQ4MGIiLCJpYXQiOjE2MTE5NTA1NjYsIm5iZiI6MTYxMTk1MDU2NiwiZXhwIjoxNjQzNDg2NTY2LCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.epPCcC-r_I0b077pwPErbz9I2cnsC1WX4pBP4mGpCnJnz-ssKQ4AYUN2ITcXGTYYv9uo3Fr1ZvMiKZ2dx6WHlOlOEDLvrOAmTyGXG0asTZnGu7JWBHiq5I6iujP_OI24wBJbOrTNayeR4bqmkjiKfhnfw9J2Ly87AkXSYwTlXy3vaD6O8ZMeCs6jyu-yj4TEUrgeelvQCjMZGSofDa_N6RntaJaDS6dzms0khzsitwwHwB8nKeNoTDsPMu3SLh-rf4Oa76xI357gI42LIKNOwkkGmDoKgX4fPMn7RPbj1vBhX0nEz53LGV8y1X4mMVo63M6GDq_HVNWXBdvXaVNxrmHFagi1MR8LWtTIJE_9LNGfUJIzP4CzJ-N22hnK_RqzYP4tNELDSEfZvbeq8olK5C6lD2thxyY0lcAWuxYZO3cjjIu_kPaRWtX3jk8P-WiVfO77db2GScEy56X70TdZN0P2AIxlfO_c21iYqTLz1lKW4nXkP_MT1nu_H2WQGAyhYGKaoo0UO9qG1HeIr-GvLjFulIvAiTwtU9ia22xh1K3xjz76go9Jr8FUe7lNP4fdVP_ubbkqhGCvtRRPjaB9zY3q-Q0P1Lk0l9GymjR-M1OOn82-i2HO0Vo1NCLboPOQ5Tlkz3-CSNFgn8sTC-3SuptuVUK_0rddozGrh-QqcQA"
+		}
+	]
+}
