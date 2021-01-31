@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**Rooms */
+Route::get('rooms', 'Api\Room\RoomController@index');
+Route::get('rooms/{id}', 'Api\Room\RoomController@show');
+
 Route::group([
     'prefix' => 'auth'
 ], function () {
     /**Login */
     Route::post('login', 'Api\Auth\AuthController@login');
     Route::post('signup', 'Api\Auth\AuthController@signUp');
-    /**Rooms */
-    Route::get('rooms', 'Api\Room\RoomController@index');
-    Route::get('rooms/{id}', 'Api\Room\RoomController@show');
-    
     Route::group([
         'middleware' => 'auth:api'
     ], function() {

@@ -1,5 +1,10 @@
 <?php
-
+ /**
+ * @OA\Tag(
+ *   name="Room",
+ *   description="Operaciones relacionadas con las habitaciones",
+ * )
+ */
 namespace App\Http\Controllers\Api\Room;
 
 use App\Http\Controllers\ApiController;
@@ -8,6 +13,32 @@ use Illuminate\Http\Request;
 
 class RoomController extends ApiController
 {
+    /**
+     * @OA\Get(
+     *     tags={"Room"},
+     *     path="/api/rooms/",
+     *     summary="Cualquiera puede ver las habitaciones.",
+     *     operationId="room.index",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Muestra todas las habitciones.",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                    @OA\Items(
+     *                      ref="#/components/schemas/room"
+     *                    )
+     *                  ),                 
+     *              ), 
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         ref="#/components/responses/Default"
+     *     ),
+     * )
+     */
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +50,38 @@ class RoomController extends ApiController
         return $this->showAll($rooms);
     }
 
+    /**
+     * @OA\Post(
+     *     tags={"Room"},
+     *     path="/api/auth/rooms/",
+     *     summary="Un usuario admin puede crear una habitación.",
+     *      security={{"bearerAuth":{}}},
+     *     operationId="room.store",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 ref="#/components/schemas/new_room",
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Crea una nueva habitación.",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                      ref="#/components/schemas/room"
+     *                  ),                 
+     *              ), 
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         ref="#/components/responses/InvalidData"
+     *     ),
+     * )
+     */
     /**
      * Store a newly created resource in storage.
      *
@@ -36,7 +99,33 @@ class RoomController extends ApiController
         $room=Room::create($data);
         return $this->showOne($room);
     }
-
+    /**
+     * @OA\Get(
+     *     tags={"Room"},
+     *     path="/api/rooms/{id}",
+     *     summary="Cualquiera puede ver una habitación",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id de la habitación",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Muestra el dato del usuario.",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                      ref="#/components/schemas/room"
+     *                  ),                 
+     *              ), 
+     *         )
+     *     ),
+     * )
+     */
     /**
      * Display the specified resource.
      *
@@ -48,7 +137,54 @@ class RoomController extends ApiController
         $room = Room::find($id);
         return $this->showOne($room);
     }
-    
+
+    /**
+     * @OA\Put(
+     *     tags={"Room"},
+     *     path="/api/auth/rooms/{id}",
+     *     summary="Un usuario admin o empleado puede actualizar la habitación.",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id de la habitación",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *         ),
+     *     ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                  ref="#/components/schemas/new_room"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Actualiza la habitación.",
+     *          @OA\JsonContent(
+     *               @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/room"
+     *              ),             
+     *         ) 
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         ref="#/components/responses/InvalidData"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         ref="#/components/responses/Unauthenticated"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         ref="#/components/responses/Default"
+     *     )
+     * )
+     */    
     /**
      * Update the specified resource in storage.
      *
@@ -77,6 +213,43 @@ class RoomController extends ApiController
         return $this->showOne($room);
     }
 
+    /**
+     * @OA\Delete(
+     *     tags={"Room"},
+     *     path="/api/auth/rooms/{id}",
+     *     summary="Un usuario admin puede eiminar una habitación.",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id de la habitación",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *         ),
+     *     ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                  ref="#/components/schemas/new_room"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Elimina la habitación.", 
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         ref="#/components/responses/Unauthenticated"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         ref="#/components/responses/Default"
+     *     )
+     * )
+     */
     /**
      * Remove the specified resource from storage.
      *

@@ -37,8 +37,8 @@ class UserController extends ApiController
      *     @OA\Response(
      *         response="default",
      *         ref="#/components/responses/Default"
-     *     )
-     * )
+     *     ),
+     * ),
      */
     /**
      * Display the user of the session.
@@ -76,11 +76,7 @@ class UserController extends ApiController
      *         ref="#/components/responses/Unauthenticated"
      * 
      *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         ref="#/components/responses/Default"
-     *     )
-     * )
+     * ),
      */
     /**
      * Display a listing of the resource.
@@ -118,10 +114,6 @@ class UserController extends ApiController
      *                  ),                 
      *              ), 
      *         )
-     *     ),
-     *     @OA\Response(
-     *         response=400,
-     *         ref="#/components/responses/InvalidData"
      *     ),
      * )
      */
