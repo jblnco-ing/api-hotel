@@ -22,6 +22,7 @@ namespace App\Http\Controllers\Api\Record;
 
 use App\Http\Controllers\ApiController;
 use App\Record;
+use App\Room;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 class RecordController extends ApiController
@@ -99,6 +100,7 @@ class RecordController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+  
     public function store(Request $request)
     {
         $request->validate([
@@ -110,36 +112,17 @@ class RecordController extends ApiController
             'status' => 'boolean',
         ]);
 
-        $date_in=Carbon::parse($request->input('date_in'));
-        $date_out=Carbon::parse($request->input('date_out'));
-        $room_id=$request->input('room_id');
+        $message_error=$this->validateRequestRecord($request);
         
-        if (Carbon::now()->gte($date_in))
-        return $this->errorResponse('The check-in date must be greater than or equal to the current date',400);
-        if ($date_in->gt($date_out))
-        return $this->errorResponse('Check-out date must be greater than check-in date',400);
-        
-        $exist=Record::where('room_id','=',$room_id)
-        ->where(function ($query) use($date_in,$date_out) {
-            $query
-            ->whereDate('date_in','<=',$date_in)
-            ->whereDate('date_out','>=',$date_out)
-            ->orWhereBetween('date_in',[
-                $date_in,
-                $date_out
-            ])
-            ->orWhereBetween('date_out',[
-                $date_in,
-                $date_out
-            ]);
-        })->get();
-        if ($exist->isNotEmpty())
-            return $this->errorResponse('this room is not available for those dates',400);
+        if ($message_error)
+        return $this->errorResponse($message_error,400);
+
         $record=Record::create([
             'room_id' => $request->input('room_id'),
             'date_in' => $request->input('date_in'),
             'date_out' => $request->input('date_out'),
-            'status' => $request->input('status',1)
+            'status' => $request->input('status',1),
+            'update_by' => $request->user()->id,
         ]);
         $record->users()->attach($request->input('user_id'));
         $record=Record::with('users')->find($record->id);
@@ -241,40 +224,47 @@ class RecordController extends ApiController
             'status' => 'boolean',
         ]);
         
-        $date_in=Carbon::parse($request->input('date_in'));
-        $date_out=Carbon::parse($request->input('date_out'));
-        $room_id=$request->input('room_id');
+        $message_error=$this->validateRequestRecord($request, $record->id);
         
-        if (Carbon::now()->gte($date_in))
-        return $this->errorResponse('The check-in date must be greater than or equal to the current date',400);
-        if ($date_in->gt($date_out))
-        return $this->errorResponse('Check-out date must be greater than check-in date',400);
+        if ($message_error)
+        return $this->errorResponse($message_error,400);
         
-        $exist=Record::where('room_id','=',$room_id)
-        ->where('id','!=',$record->id)
-        ->where(function ($query) use($date_in,$date_out) {
-            $query
-            ->whereDate('date_in','<=',$date_in)
-            ->whereDate('date_out','>=',$date_out)
-            ->orWhereBetween('date_in',[
-                $date_in,
-                $date_out
-            ])
-            ->orWhereBetween('date_out',[
-                $date_in,
-                $date_out
-            ]);
-        })->get();
-        if ($exist->isNotEmpty())
-            return $this->errorResponse('this room is not available for those dates',400);
         $record->update([
             'room_id' => $request->input('room_id'),
             'date_in' => $request->input('date_in'),
             'date_out' => $request->input('date_out'),
-            'status' => $request->input('status',1)
+            'status' => $request->input('status',1),
+            'update_by' => $request->user()->id,
         ]);
         $record->users()->sync($request->input('user_id'));
         $record=Record::with('users')->find($record->id);
         return $this->showOneData($record);
     }
+
+    private function validateRequestRecord(Request $request, $record_id=null)
+    {
+        $room_id=$request->input('room_id');
+        $user_id=$request->input('user_id');
+        $date_in=Carbon::parse($request->input('date_in'));
+        $date_in=Carbon::parse($request->input('date_in'));
+        $date_out=Carbon::parse($request->input('date_out'));
+        
+        if (Carbon::now()->gte($date_in))
+        return 'The check-in date must be greater than or equal to the current date';
+        if ($date_in->gt($date_out))
+        return 'Check-out date must be greater than check-in date';
+        
+        $room=Room::find($room_id);
+        
+        if ($room->capacity < sizeof($user_id))
+        return "The room does not have the capacity for all users. Capacity: $room->capacity";
+
+        $areAvailable=Record::areAvailableDates($date_in,$date_out,$room_id,$record_id);
+
+        if (!$areAvailable)
+        return 'this room is not available for those dates';
+
+        return false;
+    }
 }
+            

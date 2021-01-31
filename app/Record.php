@@ -56,4 +56,35 @@ class Record extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    /**
+     * Return true if date_in and date_out is available for the room.
+     *
+     * @param  int  $record_id
+     * @param  int  $room_id
+     * @param  string  $date_out
+     * @param  string  $date_in
+     * @return boolean
+     */
+    public static function areAvailableDates($date_in, $date_out, $room_id, $record_id=null)
+    {
+        $query = self::where('room_id','=',$room_id);
+        
+        if (isset($record_id))
+        $query->where('id','!=',$record_id);
+        
+        return $query->where(function ($query) use($date_in,$date_out) {
+            $query
+            ->whereDate('date_in','<=',$date_in)
+            ->whereDate('date_out','>=',$date_out)
+            ->orWhereBetween('date_in',[
+                $date_in,
+                $date_out
+            ])
+            ->orWhereBetween('date_out',[
+                $date_in,
+                $date_out
+            ]);
+        })->get()->isEmpty();
+    }
 }
