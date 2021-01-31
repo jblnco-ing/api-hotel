@@ -81,24 +81,15 @@ class RecordController extends ApiController
      *     ),
      *     @OA\Response(
      *         response=400,
-     *         description="Datos invalidos.",
-     *        @OA\JsonContent(
-     *              @OA\Property(
-     *                  property="data",
-     *                  ref="#/components/schemas/error"
-     *              ),
-     *         )
+     *         ref="#/components/responses/InvalidData"
      *     ),
      *     @OA\Response(
      *         response=401,
-     *         description="No esta Autenticado.",
-     *          @OA\JsonContent(
-     *              ref="#/components/schemas/message"
-     *         )
+     *         ref="#/components/responses/Unauthenticated"
      *     ),
      *     @OA\Response(
      *         response="default",
-     *         description="Un error a ocurrido."
+     *         ref="#/components/responses/Default"
      *     )
      * )
      */
@@ -219,24 +210,15 @@ class RecordController extends ApiController
      *     ),
      *     @OA\Response(
      *         response=400,
-     *         description="Datos invalidos.",
-     *        @OA\JsonContent(
-     *              @OA\Property(
-     *                  property="data",
-     *                  ref="#/components/schemas/error"
-     *              ),
-     *         )
+     *         ref="#/components/responses/InvalidData"
      *     ),
      *     @OA\Response(
      *         response=401,
-     *         description="No esta Autenticado.",
-     *          @OA\JsonContent(
-     *              ref="#/components/schemas/message"
-     *         )
+     *         ref="#/components/responses/Unauthenticated"
      *     ),
      *     @OA\Response(
      *         response="default",
-     *         description="Un error a ocurrido."
+     *         ref="#/components/responses/Default"
      *     )
      * )
      */

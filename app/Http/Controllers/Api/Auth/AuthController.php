@@ -49,20 +49,7 @@ class AuthController extends ApiController
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *                 required={"name","email","password"},
-     *                 @OA\Property(
-     *                     property="name",
-     *                     type="string"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="email",
-     *                     type="email"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="password",
-     *                     type="string"
-     *                 ),
-     *                 example={"name": "Jon Doe", "email": "jon@doe.com", "password": "secret"}
+     *                 ref="#/components/schemas/new_user",
      *             )
      *         )
      *     ),
@@ -75,7 +62,7 @@ class AuthController extends ApiController
      *     ),
      *     @OA\Response(
      *         response="default",
-     *         description="Un error a ocurrido."
+     *         ref="#/components/responses/Default"
      *     )
      * )
      */
@@ -141,17 +128,11 @@ class AuthController extends ApiController
      *     ),
      *     @OA\Response(
      *         response=400,
-     *         description="Datos invalidos.",
-     *        @OA\JsonContent(
-     *              @OA\Property(
-     *                  property="data",
-     *                  ref="#/components/schemas/error"
-     *              ),
-     *         )
+     *         ref="#/components/responses/InvalidData"
      *     ),
      *     @OA\Response(
      *         response="default",
-     *         description="Un error a ocurrido."
+     *         ref="#/components/responses/Default"
      *     )
      * )
      */
@@ -210,14 +191,11 @@ class AuthController extends ApiController
      *     ),
      *     @OA\Response(
      *         response=401,
-     *         description="No esta Autenticado.",
-     *          @OA\JsonContent(
-     *              ref="#/components/schemas/message"
-     *         )
+     *         ref="#/components/responses/Unauthenticated"
      *     ),
      *     @OA\Response(
      *         response="default",
-     *         description="Un error a ocurrido."
+     *         ref="#/components/responses/Default"
      *     )
      * )
      */
