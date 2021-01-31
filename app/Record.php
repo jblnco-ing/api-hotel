@@ -29,6 +29,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 *     example=true
 *   ),
 *   @OA\Property(
+*     property="update_by",
+*     type="object",
+*     ref="#/components/schemas/user"
+*   ),
+*   @OA\Property(
 *     property="users",
 *     type="array",
 *     @OA\Items(

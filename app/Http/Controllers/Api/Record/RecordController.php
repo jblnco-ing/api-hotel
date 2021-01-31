@@ -28,6 +28,39 @@ use Illuminate\Http\Request;
 class RecordController extends ApiController
 {
     /**
+     * @OA\Get(
+     *     tags={"Record"},
+     *     path="/api/record/",
+     *     summary="Usuario admin o empleado puede ver los records.",
+     *     operationId="record.index",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Muestra todos los records.",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                    @OA\Items(
+     *                      ref="#/components/schemas/record"
+     *                    )
+     *                  ),
+     *              ), 
+     *         )
+     *     ),
+     * )
+     */
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {   
+        $record=Record::all();
+        return $this->showAll($record);
+    }
+
+    /**
      * @OA\Post(
      *     tags={"Record"},
      *     path="/api/auth/record",
@@ -240,7 +273,55 @@ class RecordController extends ApiController
         $record=Record::with('users')->find($record->id);
         return $this->showOneData($record);
     }
+    
+    /**
+     * @OA\Delete(
+     *     tags={"Record"},
+     *     path="/api/auth/record/{record}",
+     *     summary="Un usuario admin puede eiminar un record.",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="record",
+     *         in="path",
+     *         description="Id del record",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Elimina el record.", 
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         ref="#/components/responses/Unauthenticated"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         ref="#/components/responses/Default"
+     *     )
+     * )
+     */
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Record  $record
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Record $record)
+    {
+        $record->delete();
+        return response('',201);
+    }
 
+    /**
+     * Returns a message if a condition is met else returns false.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int $record_id
+     * @return string
+     */
     private function validateRequestRecord(Request $request, $record_id=null)
     {
         $room_id=$request->input('room_id');
@@ -266,5 +347,6 @@ class RecordController extends ApiController
 
         return false;
     }
+
 }
             

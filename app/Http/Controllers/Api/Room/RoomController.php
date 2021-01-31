@@ -228,14 +228,6 @@ class RoomController extends ApiController
      *              type="integer",
      *         ),
      *     ),
-     *      @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                  ref="#/components/schemas/new_room"
-     *             )
-     *         )
-     *     ),
      *     @OA\Response(
      *         response=201,
      *         description="Elimina la habitación.", 
@@ -260,5 +252,6 @@ class RoomController extends ApiController
     {
         $room=ROOM::find($id);
         $room->delete();
+        return response('',201);
     }
 }
