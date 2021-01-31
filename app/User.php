@@ -1,5 +1,39 @@
 <?php
-
+/**
+* @OA\Schema(
+*  schema="user",
+*  @OA\Property(
+*     property="id",
+*     type="integer",
+*     example=1
+*   ),
+*   @OA\Property(
+*     property="name",
+*     type="string",
+*     example="Emil Weimann"
+*   ),
+*   @OA\Property(
+*     property="email",
+*     type="string",
+*     example="zena44@example.org"
+*   ),
+*   @OA\Property(
+*     property="email_verified_at",
+*     type="string",
+*     example="2021-01-29T23:21:13.000000Z"
+*   ),
+*   @OA\Property(
+*     property="created_at",
+*     type="string",
+*     example="2021-01-29T23:21:13.000000Z"
+*   ),
+*   @OA\Property(
+*     property="updated_at",
+*     type="string",
+*     example="2021-01-29T23:21:13.000000Z"
+*   ),
+* )
+*/
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;

@@ -1,4 +1,22 @@
 <?php
+/**
+ * @OA\Tag(
+ *   name="Record",
+ *   description="Operaciones para manejar los records de las habitaciones y los usuarios",
+ * )
+ * @OA\Schema(
+ *   schema="error",
+ *   @OA\Property(
+ *     property="error",
+ *     type="string"
+ *   ),
+ *   @OA\Property(
+ *     property="code",
+ *     type="string"
+ *   )
+ * )
+ */
+
 
 namespace App\Http\Controllers\Api\Record;
 
@@ -6,19 +24,84 @@ use App\Http\Controllers\ApiController;
 use App\Record;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
 class RecordController extends ApiController
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *     tags={"Record"},
+     *     path="/api/auth/record",
+     *     summary="Un usuario admin o empleado puede crear el record de las habitaciones.",
+     *     security={{"bearerAuth":{}}}, 
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"room_id","date_in","date_out","user_id"},
+     *                 @OA\Property(
+     *                    property="room_id",
+     *                    type="integer",
+     *                    example=1
+     *                  ),
+     *                  @OA\Property(
+     *                    property="date_in",
+     *                    type="string",
+     *                    example="2021/02/26"
+     *                  ),
+     *                  @OA\Property(
+     *                    property="date_out",
+     *                    type="string",
+     *                    example="2021/02/26"
+     *                  ),
+     *                  @OA\Property(
+     *                    property="status",
+     *                    type="boolean",
+     *                    example=true
+     *                  ),
+     *                  @OA\Property(
+     *                    property="user_id",
+     *                    type="array",
+     *                    @OA\Items(
+     *                      type="integer",
+     *                      example=4,
+     *                      minimum=1
+     *                    )
+     *                  ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Crea un record de una habitación con los usuarios que la ocuparan.",
+     *          @OA\JsonContent(
+     *               @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/record"
+     *              ),             
+     *         ) 
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Datos invalidos.",
+     *        @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/error"
+     *              ),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No esta Autenticado.",
+     *          @OA\JsonContent(
+     *              ref="#/components/schemas/message"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Un error a ocurrido."
+     *     )
+     * )
      */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -73,16 +156,90 @@ class RecordController extends ApiController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Record  $record
-     * @return \Illuminate\Http\Response
+     * @OA\Put(
+     *     tags={"Record"},
+     *     path="/api/auth/record/{record}",
+     *     summary="Un usuario admin o empleado puede crear el record de las habitaciones.",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="record",
+     *         in="path",
+     *         description="Id del record que se quiere actualizar",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *         ),
+     *     ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"room_id","date_in","date_out","user_id"},
+     *                 @OA\Property(
+     *                    property="room_id",
+     *                    type="integer",
+     *                    example=1
+     *                  ),
+     *                  @OA\Property(
+     *                    property="date_in",
+     *                    type="string",
+     *                    example="2021/02/26"
+     *                  ),
+     *                  @OA\Property(
+     *                    property="date_out",
+     *                    type="string",
+     *                    example="2021/02/26"
+     *                  ),
+     *                  @OA\Property(
+     *                    property="status",
+     *                    type="boolean",
+     *                    example=true
+     *                  ),
+     *                  @OA\Property(
+     *                    property="user_id",
+     *                    type="array",
+     *                    @OA\Items(
+     *                      type="integer",
+     *                      example=4,
+     *                      minimum=1
+     *                    )
+     *                  ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Actualiza un record de una habitación con los usuarios que la ocuparan.",
+     *          @OA\JsonContent(
+     *               @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/record"
+     *              ),             
+     *         ) 
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Datos invalidos.",
+     *        @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/error"
+     *              ),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No esta Autenticado.",
+     *          @OA\JsonContent(
+     *              ref="#/components/schemas/message"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Un error a ocurrido."
+     *     )
+     * )
      */
-    public function show(Record $record)
-    {
-        
-    }
-
     /**
      * Update the specified resource in storage.
      *
