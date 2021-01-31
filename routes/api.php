@@ -35,7 +35,7 @@ Route::group([
         Route::get('users/{id}', 'Api\User\UserController@show')->middleware('permission:users.show');
         
         /**Rooms */
-        Route::resource('rooms','Api\Room\RoomController',['only'=>['store','destroy']])->middleware('permission:rooms.store');
+        Route::resource('rooms','Api\Room\RoomController',['only'=>['store']])->middleware('permission:rooms.store');
         Route::put('rooms/{id}', 'Api\Room\RoomController@update')->middleware('permission:rooms.update');
         
         /**Record */

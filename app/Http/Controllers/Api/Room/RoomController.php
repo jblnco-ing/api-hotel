@@ -212,46 +212,4 @@ class RoomController extends ApiController
         $room->save();
         return $this->showOne($room);
     }
-
-    /**
-     * @OA\Delete(
-     *     tags={"Room"},
-     *     path="/api/auth/rooms/{id}",
-     *     summary="Un usuario admin puede eiminar una habitación.",
-     *     security={{"bearerAuth":{}}},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="Id de la habitación",
-     *         required=true,
-     *         @OA\Schema(
-     *              type="integer",
-     *         ),
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Elimina la habitación.", 
-     *     ),
-     *     @OA\Response(
-     *         response=401,
-     *         ref="#/components/responses/Unauthenticated"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         ref="#/components/responses/Default"
-     *     )
-     * )
-     */
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $room=ROOM::find($id);
-        $room->delete();
-        return response('',201);
-    }
 }
