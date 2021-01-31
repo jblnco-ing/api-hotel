@@ -29,7 +29,7 @@ class RoomController extends ApiController
      *                    @OA\Items(
      *                      ref="#/components/schemas/room"
      *                    )
-     *                  ),                 
+     *                  ),
      *              ), 
      *         )
      *     ),
@@ -115,7 +115,7 @@ class RoomController extends ApiController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Muestra el dato del usuario.",
+     *         description="Muestra el dato de la habitación.",
      *          @OA\JsonContent(
      *              @OA\Property(
      *                  property="data",
